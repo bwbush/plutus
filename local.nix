@@ -15,6 +15,7 @@ in
   pkgs.stdenv.mkDerivation {
     name = "env";
     buildInputs = [
+      pkgs.cabal-install
       ghc
     ];
   }
