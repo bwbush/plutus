@@ -36,8 +36,6 @@ let
 in
 rec {
 
-  inherit pkgs haskell;
-
   tests = import ./nix/tests/default.nix {
     inherit pkgs iohkNix haskell;
     # Just do some basic cleaning here, the tests do more
