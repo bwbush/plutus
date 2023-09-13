@@ -307,10 +307,10 @@ mkMarloweValidator
     checkOwnOutputConstraint ocDatum ocValue =
         let hsh = findDatumHash' ocDatum
         in traceIfFalse "d" -- "Output constraint"
-        $ checkScriptOutput (==) ownAddress hsh ocValue getContinuingOutput
+        $ checkScriptOutput (==) ownAddress hsh ocValue (getContinuingOutput ())
 
-    getContinuingOutput :: TxOut
-    getContinuingOutput = case filter (\TxOut{txOutAddress} -> ownAddress == txOutAddress) allOutputs of
+    getContinuingOutput :: () -> TxOut
+    getContinuingOutput _ = case filter (\TxOut{txOutAddress} -> ownAddress == txOutAddress) allOutputs of
         [out] -> out
         _     -> traceError "o" -- No continuation or multiple Marlowe contract outputs is forbidden.
 
